@@ -22,12 +22,16 @@ public class Plantilla {
      *
      * @param empleado El empleado a contratar.
      * @throws IllegalArgumentException Si el empleado es nulo.
+     * @throws IllegalArgumentException Si ya existe un empleado con el mismo DNI.
      */
     public void contratarEmpleado(Empleado empleado) {
         if (empleado == null) {
             throw new IllegalArgumentException("No se puede contratar un empleado nulo");
         }
         empleados.add(empleado);
+		if (empleado.getDni().equals(empleado.getDni())) {
+			throw new IllegalArgumentException("El empleado con DNI " + empleado.getDni() + " ya está contratado");
+		}
     }
 
     /**

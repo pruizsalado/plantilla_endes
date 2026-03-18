@@ -17,7 +17,7 @@ class PlantillaTest {
     void setUp() {
         plantilla = new Plantilla();
     }
-
+    
     /**
      * Prueba que verifica que no se puedan contratar empleados con el mismo DNI.
      */
@@ -35,5 +35,18 @@ class PlantillaTest {
 
         // Verificar el mensaje de la excepción
         assertEquals("El empleado con DNI 11111111H ya está contratado", ex.getMessage());
+    }
+    
+    @Test
+    void testContratarEmpleado() {
+		Empleado tecnico = new Tecnico("22222222H", "Pablo", "Ruiz", 1500.0, 3);
+		assertDoesNotThrow(() -> plantilla.contratarEmpleado(tecnico));
+    }
+    
+    @Test
+    void testGetEmpleadosPorNombre() {
+    	 Empleado tecnico1 = new Tecnico("22222222H", "Pablo", "Ruiz", 1100.0, 4);
+    	 String filtroNombre = "Pablo";
+    	 assertEquals(plantilla.getEmpleadosPorNombre(filtroNombre), "Pablo");
     }
 }
